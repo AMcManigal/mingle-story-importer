@@ -1,0 +1,30 @@
+<acceptance-test-run title="Getting the story cards that belong to the Update Mingle Through Tests epic" name="Getting the story cards that belong to the Update Mingle Through Tests epic" description="" steps="8" successful="0" failures="0" skipped="0" ignored="7" pending="1" annotated-result="PENDING" result="PENDING" duration="458" timestamp="2016-05-26T14:40:39.879-04:00">
+  <user-story id="retrieving-mingle-cards" name="Retrieving Mingle cards" path="src/test/resources/features/dataRetrieval/retrievingCards.feature"/>
+  <tags>
+    <tag name="Retrieving Mingle cards" type="feature"/>
+  </tags>
+  <test-step result="PENDING" duration="214">
+    <description>Given a Mingle server address of https://careerbuilder.mingle-api.thoughtworks.com/api/v2/projects/</description>
+  </test-step>
+  <test-step result="IGNORED" duration="1">
+    <description>And a Mingle project name of core_search</description>
+  </test-step>
+  <test-step result="IGNORED" duration="1">
+    <description>And a user name of apiadmin@careerbuilder.com</description>
+  </test-step>
+  <test-step result="IGNORED" duration="1">
+    <description>And a password of api.cb5550</description>
+  </test-step>
+  <test-step result="IGNORED" duration="0">
+    <description>Given I want to retrieve all the cards belonging to the Update Mingle Through Tests epic</description>
+  </test-step>
+  <test-step result="IGNORED" duration="2">
+    <description>And I have created a request to get the cards that are assigned to this epic</description>
+  </test-step>
+  <test-step result="IGNORED" duration="1">
+    <description>When I send the request to the Mingle server</description>
+  </test-step>
+  <test-step result="IGNORED" duration="0">
+    <description>Then I should receive 1 cards in the response</description>
+  </test-step>
+</acceptance-test-run>

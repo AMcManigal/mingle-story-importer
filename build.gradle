@@ -1,0 +1,66 @@
+group 'com.careerbuilder.coresearch'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:1.1.34")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.7.4'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'org.codehaus.groovy:groovy-all:2.3.11'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'net.serenity-bdd:serenity-core:1.1.34'
+    testCompile 'net.serenity-bdd:serenity-junit:1.1.34'
+    testCompile 'net.serenity-bdd:serenity-cucumber:1.1.8'
+    testCompile 'info.cukes:cucumber-java:1.2.4'
+    testCompile 'info.cukes:cucumber-junit:1.2.4'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.assertj:assertj-core:1.7.0'
+    testCompile 'org.slf4j:slf4j-simple:1.7.7'
+}
+test {
+    include '**/When*'
+    exclude '**/*$*'
+    exclude '**/integration/**'
+    exclude '**/samples/**'
+    exclude '**/*Sample*'
+    maxParallelForks = Runtime.runtime.availableProcessors()
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'gradle.cucumber', 'src/test/resources']
+        }
+    }
+}
+
+
+gradle.startParameter.continueOnFailure = true
